@@ -18,6 +18,7 @@ async function getAllUsers(req, res) {
  */
 async function getUserProfile(req, res) {
 	const user = await prisma.user.findUnique({
+		where: { id: req.user.id },
 		select: userFields
 	})
 	res.json(user)
