@@ -7,7 +7,7 @@ import {
 	deleteAndGetExercise,
 	getExerciseList,
 	updateAndGetExercise
-} from '@modules/exercise/data-access/exercise.db'
+} from '@apps/exercise/data-access/exercise.db'
 
 /**
  * @description Get all exercises

@@ -4,7 +4,7 @@ import {
 	ICreateExercise,
 	IExercise,
 	IUpdateExercise
-} from '@modules/exercise/domain/exercise.types'
+} from '@apps/exercise/domain/exercise.types'
 
 async function getExerciseList(): Promise<IExercise[]> {
 	return await prisma.exercise.findMany({ orderBy: { id: 'desc' } })

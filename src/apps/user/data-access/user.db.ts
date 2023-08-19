@@ -1,6 +1,6 @@
 import { prisma } from '@libraries/prisma'
 
-import { ICreateUser, IUser, userFields } from '@modules/user/domain/user.types'
+import { ICreateUser, IUser, userFields } from '@apps/user/domain/user.types'
 
 async function getUserList(): Promise<IUser[]> {
 	return await prisma.user.findMany()

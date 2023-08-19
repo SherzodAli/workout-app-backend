@@ -5,14 +5,14 @@ import { Request } from '@libraries/router'
 import {
 	doesPasswordMatch,
 	getHashedPassword
-} from '@modules/auth/domain/password'
-import { generateToken } from '@modules/auth/domain/token'
+} from '@apps/auth/domain/password'
+import { generateToken } from '@apps/auth/domain/token'
 import {
 	createAndGetUser,
 	getFullUserByEmail,
 	getUserByEmail
-} from '@modules/user/data-access/user.db'
-import { getFakeFullName } from '@modules/user/data-access/user.mock'
+} from '@apps/user/data-access/user.db'
+import { getFakeFullName } from '@apps/user/data-access/user.mock'
 
 /**
  * @description Auth user

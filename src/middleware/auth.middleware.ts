@@ -2,8 +2,8 @@ import { NextFunction, Response } from 'express'
 
 import { Request } from '@libraries/router'
 
-import { getPayloadOrNull } from '@modules/auth/domain/token'
-import { getUserById } from '@modules/user/data-access/user.db'
+import { getPayloadOrNull } from '@apps/auth/domain/token'
+import { getUserById } from '@apps/user/data-access/user.db'
 
 async function checkToken(req: Request, res: Response, next: NextFunction) {
 	const token = getTokenOrNull(req)

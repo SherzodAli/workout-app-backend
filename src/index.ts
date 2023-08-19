@@ -9,9 +9,9 @@ import { prisma } from '@libraries/prisma'
 
 import { errorHandler, notFound } from '@middleware'
 
-import { authRouter } from '@modules/auth/api'
-import { exerciseRouter } from '@modules/exercise/api'
-import { userRouter } from '@modules/user/api'
+import { authRouter } from '@apps/auth/api'
+import { exerciseRouter } from '@apps/exercise/api'
+import { userRouter } from '@apps/user/api'
 
 const app = express()
 const __dirname = path.resolve()

@@ -4,13 +4,13 @@
 		"esModuleInterop": true,
 		"sourceMap": true,
 		"paths": {
-			"@config/*": ["./app/config/*"],
-			"@libraries/*": ["./app/libraries/*"],
-			"@middleware/*": ["./app/middleware/*"],
-			"@middleware": ["./app/middleware"],
-			"@modules/*": ["./app/modules/*"]
+			"@config/*": ["./src/config/*"],
+			"@libraries/*": ["./src/libraries/*"],
+			"@middleware/*": ["./src/middleware/*"],
+			"@middleware": ["./src/middleware"],
+			"@apps/*": ["./src/apps/*"]
 		}
 	},
-	"include": ["app/**/*"],
+	"include": ["src/**/*"],
 	"exclude": ["node_modules"]
 }
