@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { NextFunction, Request, Response, Router } from 'express'
 
 const httpMethods = [
 	'all',
@@ -11,17 +11,19 @@ const httpMethods = [
 	'head'
 ]
 
-const tryCatchWrapper = router => (req, res, next) => {
-	return Promise.resolve(router(req, res, next)).catch(next)
+function tryCatchWrapper(router: Router) {
+	return function (req: Request, res: Response, next: NextFunction) {
+		return Promise.resolve(router(req, res, next)).catch(next)
+	}
 }
 
-const wrapHttpMethods = (httpMethod, router) => {
+const wrapHttpMethods = (httpMethod, router: Router) => {
 	const originalMethod = router[httpMethod]
 	router[httpMethod] = (route, ...controllers) =>
 		originalMethod.call(router, route, ...controllers.map(tryCatchWrapper))
 }
 
-function SafeRouter() {
+function SafeRouter(): Router {
 	const router = Router()
 	httpMethods.forEach(method => wrapHttpMethods(method, router))
 	return router

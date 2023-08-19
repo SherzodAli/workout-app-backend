@@ -1,16 +1,20 @@
+import { Response } from 'express'
+
+import { Request } from '@libraries/router'
+
 import {
 	createAndGetExercise,
 	deleteAndGetExercise,
 	getExerciseList,
 	updateAndGetExercise
-} from '@modules/exercise/data-access/exercise.db.js'
+} from '@modules/exercise/data-access/exercise.db'
 
 /**
  * @description Get all exercises
  * @route GET /api/exercises/
  * @access Private
  */
-async function getAllExercises(req, res) {
+async function getAllExercises(req: Request, res: Response) {
 	res.json(await getExerciseList())
 }
 
@@ -19,7 +23,7 @@ async function getAllExercises(req, res) {
  * @route POST /api/exercises/
  * @access Private
  */
-async function createExercise(req, res) {
+async function createExercise(req: Request, res: Response) {
 	const { name, sets, iconPath } = req.body
 	const exercise = await createAndGetExercise({ name, sets, iconPath })
 	res.json(exercise)
@@ -30,7 +34,7 @@ async function createExercise(req, res) {
  * @route PUT /api/exercises/:id
  * @access Private
  */
-async function updateExercise(req, res) {
+async function updateExercise(req: Request, res: Response) {
 	const { name, sets, iconPath } = req.body
 
 	const exercise = await updateAndGetExercise({
@@ -48,7 +52,7 @@ async function updateExercise(req, res) {
  * @route DELETE /api/exercises/:id
  * @access Private
  */
-async function deleteExercise(req, res) {
+async function deleteExercise(req: Request, res: Response) {
 	const exercise = await deleteAndGetExercise(+req.params.id)
 	res.json(exercise)
 }

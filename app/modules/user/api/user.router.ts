@@ -2,7 +2,7 @@ import { SafeRouter } from '@libraries/router'
 
 import { checkToken } from '@middleware'
 
-import { deleteUsers, getAllUsers, getUserProfile } from './user.controller.js'
+import { deleteUsers, getAllUsers, getUserProfile } from './user.controller'
 
 const userRouter = SafeRouter()
 

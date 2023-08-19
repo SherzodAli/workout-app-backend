@@ -1,12 +1,11 @@
-import jwt from 'jsonwebtoken'
+import { NextFunction, Response } from 'express'
 
-import { ACCESS_TOKEN } from '@config/constants.js'
+import { Request } from '@libraries/router'
 
-import { prisma } from '@libraries/prisma'
+import { getPayloadOrNull } from '@modules/auth/domain/token'
+import { getUserById } from '@modules/user/data-access/user.db'
 
-import { userFields } from '@modules/user/domain/user.types.js'
-
-async function checkToken(req, res, next) {
+async function checkToken(req: Request, res: Response, next: NextFunction) {
 	const token = getTokenOrNull(req)
 
 	if (!token) {
@@ -23,10 +22,7 @@ async function checkToken(req, res, next) {
 			.json({ message: 'Not authorized, can’t decode the token' })
 	}
 
-	const user = await prisma.user.findUnique({
-		where: { id: payload?.userId },
-		select: userFields
-	})
+	const user = await getUserById(payload?.userId)
 
 	if (!user) {
 		return res.status(401).json({ message: 'Not authorized, invalid token' })
@@ -36,17 +32,9 @@ async function checkToken(req, res, next) {
 	next()
 }
 
-function getTokenOrNull(req) {
+function getTokenOrNull(req: Request): string | null {
 	const token = req.headers.authorization?.split(' ')?.at(1)
 	return token ? token : null
-}
-
-function getPayloadOrNull(token) {
-	try {
-		return jwt.verify(token, ACCESS_TOKEN)
-	} catch (e) {
-		return null
-	}
 }
 
 export { checkToken }

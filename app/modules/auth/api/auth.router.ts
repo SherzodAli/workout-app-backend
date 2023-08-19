@@ -1,6 +1,6 @@
 import { SafeRouter } from '@libraries/router'
 
-import { authUser, registerUser } from './auth.controller.js'
+import { authUser, registerUser } from './auth.controller'
 
 const authRouter = SafeRouter()
 

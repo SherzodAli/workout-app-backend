@@ -1,6 +1,8 @@
 {
 	"compilerOptions": {
 		"baseUrl": ".",
+		"esModuleInterop": true,
+		"sourceMap": true,
 		"paths": {
 			"@config/*": ["./app/config/*"],
 			"@libraries/*": ["./app/libraries/*"],
@@ -9,5 +11,6 @@
 			"@modules/*": ["./app/modules/*"]
 		}
 	},
+	"include": ["app/**/*"],
 	"exclude": ["node_modules"]
 }

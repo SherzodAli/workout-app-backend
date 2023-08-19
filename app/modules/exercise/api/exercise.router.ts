@@ -7,7 +7,7 @@ import {
 	deleteExercise,
 	getAllExercises,
 	updateExercise
-} from './exercise.controller.js'
+} from './exercise.controller'
 
 const exerciseRouter = SafeRouter()
 

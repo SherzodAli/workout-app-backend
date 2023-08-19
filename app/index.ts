@@ -3,7 +3,7 @@ import express from 'express'
 import morgan from 'morgan'
 import path from 'path'
 
-import { PORT, isDevelopment } from '@config/constants.js'
+import { PORT, isDevelopment } from '@config/constants'
 
 import { prisma } from '@libraries/prisma'
 

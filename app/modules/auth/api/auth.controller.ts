@@ -1,24 +1,26 @@
-import { faker } from '@faker-js/faker'
+import { Response } from 'express'
+
+import { Request } from '@libraries/router'
 
 import {
 	doesPasswordMatch,
 	getHashedPassword
-} from '@modules/auth/domain/password.js'
-import { generateToken } from '@modules/auth/domain/token.js'
+} from '@modules/auth/domain/password'
+import { generateToken } from '@modules/auth/domain/token'
 import {
 	createAndGetUser,
 	getFullUserByEmail,
 	getUserByEmail
-} from '@modules/user/data-access/user.db.js'
+} from '@modules/user/data-access/user.db'
+import { getFakeFullName } from '@modules/user/data-access/user.mock'
 
 /**
  * @description Auth user
  * @route POST /api/auth/login
  * @access Public
  */
-async function authUser(req, res) {
+async function authUser(req: Request, res: Response) {
 	const { email, password } = req.body
-
 	const user = await getFullUserByEmail(email)
 	const isValidPassword = await doesPasswordMatch(user?.password, password)
 
@@ -34,9 +36,8 @@ async function authUser(req, res) {
  * @route POST /api/auth/register
  * @access Public
  */
-async function registerUser(req, res) {
+async function registerUser(req: Request, res: Response) {
 	const { email, password } = req.body
-
 	const user = await getUserByEmail(email)
 
 	if (user) {
@@ -46,7 +47,7 @@ async function registerUser(req, res) {
 	const newUser = await createAndGetUser({
 		email,
 		password: await getHashedPassword(password),
-		name: faker.person.fullName()
+		name: getFakeFullName()
 	})
 
 	const token = generateToken(newUser.id)

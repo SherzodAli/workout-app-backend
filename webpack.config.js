@@ -4,7 +4,7 @@ import nodeExternals from 'webpack-node-externals'
 const __dirname = path.resolve()
 
 export default {
-	entry: './app/index.js',
+	entry: './app/index.ts',
 	mode: 'development',
 	target: 'node',
 	output: {
@@ -12,7 +12,7 @@ export default {
 		filename: 'index.cjs'
 	},
 	resolve: {
-		extensions: ['.js'],
+		extensions: ['.ts', '.js'],
 		alias: {
 			'@config': path.resolve(__dirname, './app/config'),
 			'@libraries': path.resolve(__dirname, './app/libraries'),
@@ -23,9 +23,8 @@ export default {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-				enforce: 'pre',
-				use: ['source-map-loader']
+				test: /\.ts$/,
+				use: ['ts-loader']
 			}
 		]
 	},
