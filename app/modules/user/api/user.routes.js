@@ -1,6 +1,6 @@
-import { SafeRouter } from 'libraries/router/router.js'
+import { SafeRouter } from '@libraries/router'
 
-import { checkToken } from 'middleware/auth.middleware.js'
+import { checkToken } from '@middleware'
 
 import { deleteUsers, getAllUsers, getUserProfile } from './user.controller.js'
 

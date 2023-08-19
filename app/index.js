@@ -3,16 +3,15 @@ import express from 'express'
 import morgan from 'morgan'
 import path from 'path'
 
-import { PORT, isDevelopment } from 'config/constants.js'
+import { PORT, isDevelopment } from '@config/constants.js'
 
-import { prisma } from 'libraries/prisma/prisma.js'
+import { prisma } from '@libraries/prisma'
 
-import { errorHandler } from 'middleware/error.middleware.js'
-import { notFound } from 'middleware/not-found.middleware.js'
+import { errorHandler, notFound } from '@middleware'
 
-import { authRouter } from 'modules/auth/api/auth.routes.js'
-import { exerciseRouter } from 'modules/exercise/api/exercise.routes.js'
-import { userRouter } from 'modules/user/api/user.routes.js'
+import { authRouter } from '@modules/auth/api'
+import { exerciseRouter } from '@modules/exercise/api'
+import { userRouter } from '@modules/user/api'
 
 const app = express()
 const __dirname = path.resolve()

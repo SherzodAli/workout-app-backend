@@ -14,11 +14,10 @@ export default {
 	resolve: {
 		extensions: ['.js'],
 		alias: {
-			config: path.resolve(__dirname, './app/config'),
-			libraries: path.resolve(__dirname, './app/libraries'),
-			middleware: path.resolve(__dirname, './app/middleware'),
-			modules: path.resolve(__dirname, './app/modules'),
-			// Add more aliases as needed
+			'@config': path.resolve(__dirname, './app/config'),
+			'@libraries': path.resolve(__dirname, './app/libraries'),
+			'@middleware': path.resolve(__dirname, './app/middleware'),
+			'@modules': path.resolve(__dirname, './app/modules')
 		}
 	},
 	module: {

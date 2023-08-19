@@ -2,7 +2,7 @@ import {
 	deleteUserList,
 	getUserById,
 	getUserList
-} from 'modules/user/data-access/user.db.js'
+} from '@modules/user/data-access/user.db.js'
 
 async function getAllUsers(req, res) {
 	const users = await getUserList()

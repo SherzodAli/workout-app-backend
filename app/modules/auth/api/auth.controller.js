@@ -3,13 +3,13 @@ import { faker } from '@faker-js/faker'
 import {
 	doesPasswordMatch,
 	getHashedPassword
-} from 'modules/auth/domain/password.js'
-import { generateToken } from 'modules/auth/domain/token.js'
+} from '@modules/auth/domain/password.js'
+import { generateToken } from '@modules/auth/domain/token.js'
 import {
 	createAndGetUser,
 	getFullUserByEmail,
 	getUserByEmail
-} from 'modules/user/data-access/user.db.js'
+} from '@modules/user/data-access/user.db.js'
 
 /**
  * @description Auth user

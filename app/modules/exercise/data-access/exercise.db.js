@@ -1,4 +1,4 @@
-import { prisma } from 'libraries/prisma/prisma.js'
+import { prisma } from '@libraries/prisma'
 
 async function getExerciseList() {
 	return await prisma.exercise.findMany({ orderBy: { id: 'desc' } })

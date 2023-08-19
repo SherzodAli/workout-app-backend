@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-import { ACCESS_TOKEN, TOKEN_EXPIRES_IN } from 'config/constants.js'
+import { ACCESS_TOKEN, TOKEN_EXPIRES_IN } from '@config/constants.js'
 
 function generateToken(userId) {
 	return jwt.sign({ userId }, ACCESS_TOKEN, { expiresIn: TOKEN_EXPIRES_IN })

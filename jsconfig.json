@@ -2,10 +2,11 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"config/*": ["./app/config/*"],
-			"libraries/*": ["./app/libraries/*"],
-			"middleware/*": ["./app/middleware/*"],
-			"modules/*": ["./app/modules/*"]
+			"@config/*": ["./app/config/*"],
+			"@libraries/*": ["./app/libraries/*"],
+			"@middleware/*": ["./app/middleware/*"],
+			"@middleware": ["./app/middleware"],
+			"@modules/*": ["./app/modules/*"]
 		}
 	},
 	"exclude": ["node_modules"]

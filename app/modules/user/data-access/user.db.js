@@ -1,6 +1,6 @@
-import { prisma } from 'libraries/prisma/prisma.js'
+import { prisma } from '@libraries/prisma'
 
-import { userFields } from 'modules/user/domain/user.types.js'
+import { userFields } from '@modules/user/domain/user.types.js'
 
 async function getUserList() {
 	return await prisma.user.findMany()

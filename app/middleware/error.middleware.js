@@ -1,4 +1,4 @@
-import { isProduction } from 'config/constants.js'
+import { isProduction } from '@config/constants.js'
 
 function errorHandler(err, req, res, next) {
 	const statusCode = res.statusCode ?? 500

@@ -3,7 +3,7 @@ import {
 	deleteAndGetExercise,
 	getExerciseList,
 	updateAndGetExercise
-} from 'modules/exercise/data-access/exercise.db.js'
+} from '@modules/exercise/data-access/exercise.db.js'
 
 /**
  * @description Get all exercises
