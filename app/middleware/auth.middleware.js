@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken'
 
-import { ACCESS_TOKEN } from '../config.js'
-import { prisma } from '../prisma.js'
-import { userFields } from '../utils/user.utils.js'
+import { ACCESS_TOKEN } from 'config/constants.js'
+
+import { prisma } from 'libraries/prisma/prisma.js'
+
+import { userFields } from 'modules/user/domain/user.types.js'
 
 async function checkToken(req, res, next) {
 	const token = getTokenOrNull(req)

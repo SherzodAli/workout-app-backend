@@ -1,4 +1,4 @@
-import { SafeRouter } from '../router/router.js'
+import { SafeRouter } from 'libraries/router/router.js'
 
 import { authUser, registerUser } from './auth.controller.js'
 

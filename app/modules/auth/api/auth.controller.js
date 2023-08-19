@@ -1,10 +1,15 @@
 import { faker } from '@faker-js/faker'
-import { hash, verify } from 'argon2'
 
-import { prisma } from '../prisma.js'
-import { userFields } from '../utils/user.utils.js'
-
-import { generateToken } from './token.js'
+import {
+	doesPasswordMatch,
+	getHashedPassword
+} from 'modules/auth/domain/password.js'
+import { generateToken } from 'modules/auth/domain/token.js'
+import {
+	createAndGetUser,
+	getFullUserByEmail,
+	getUserByEmail
+} from 'modules/user/data-access/user.db.js'
 
 /**
  * @description Auth user
@@ -14,8 +19,8 @@ import { generateToken } from './token.js'
 async function authUser(req, res) {
 	const { email, password } = req.body
 
-	const user = await prisma.user.findUnique({ where: { email } })
-	const isValidPassword = await verify(user?.password, password)
+	const user = await getFullUserByEmail(email)
+	const isValidPassword = await doesPasswordMatch(user?.password, password)
 
 	if (!user || !isValidPassword) {
 		return res.status(400).json({ message: 'Email or password is incorrect' })
@@ -32,22 +37,18 @@ async function authUser(req, res) {
 async function registerUser(req, res) {
 	const { email, password } = req.body
 
-	const user = await prisma.user.findUnique({ where: { email } })
+	const user = await getUserByEmail(email)
 
 	if (user) {
 		return res.status(400).json({ message: 'User already exists' })
 	}
 
-	const userData = {
+	const newUser = await createAndGetUser({
 		email,
-		password: await hash(password),
+		password: await getHashedPassword(password),
 		name: faker.person.fullName()
-	}
-
-	const newUser = await prisma.user.create({
-		data: userData,
-		select: userFields
 	})
+
 	const token = generateToken(newUser.id)
 
 	res.json({ newUser, token })

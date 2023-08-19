@@ -15,10 +15,10 @@ const tryCatchWrapper = router => (req, res, next) => {
 	return Promise.resolve(router(req, res, next)).catch(next)
 }
 
-function wrapHttpMethods(httpMethod, router) {
+const wrapHttpMethods = (httpMethod, router) => {
 	const originalMethod = router[httpMethod]
-	router[httpMethod] = (route, controller) =>
-		originalMethod.call(router, route, tryCatchWrapper(controller))
+	router[httpMethod] = (route, ...controllers) =>
+		originalMethod.call(router, route, ...controllers.map(tryCatchWrapper))
 }
 
 function SafeRouter() {
