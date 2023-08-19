@@ -10,7 +10,11 @@ async function getExerciseList(): Promise<IExercise[]> {
 	return await prisma.exercise.findMany({ orderBy: { id: 'desc' } })
 }
 
-async function createAndGetExercise({ name, sets, iconPath }: ICreateExercise) {
+async function createAndGetExercise({
+	name,
+	sets,
+	iconPath
+}: ICreateExercise): Promise<IExercise> {
 	return await prisma.exercise.create({ data: { name, sets, iconPath } })
 }
 

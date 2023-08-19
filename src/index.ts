@@ -12,6 +12,7 @@ import { errorHandler, notFound } from '@middleware'
 import { authRouter } from '@apps/auth/api'
 import { exerciseRouter } from '@apps/exercise/api'
 import { userRouter } from '@apps/user/api'
+import { workoutRouter } from '@apps/workout/api'
 
 const app = express()
 const __dirname = path.resolve()
@@ -25,6 +26,7 @@ async function main() {
 	app.use('/api/auth', authRouter)
 	app.use('/api/users', userRouter)
 	app.use('/api/exercises', exerciseRouter)
+	app.use('/api/workouts', workoutRouter)
 
 	app.use(notFound)
 	app.use(errorHandler)

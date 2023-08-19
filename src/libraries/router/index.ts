@@ -1,2 +1,2 @@
-export { SafeRouter } from './router'
+export { Router, ProtectedRouter } from './router'
 export { Request } from './interface'

@@ -1,6 +1,4 @@
-import { SafeRouter } from '@libraries/router'
-
-import { checkToken } from '@middleware'
+import { ProtectedRouter } from '@libraries/router'
 
 import {
 	createExercise,
@@ -9,11 +7,11 @@ import {
 	updateExercise
 } from './exercise.controller'
 
-const exerciseRouter = SafeRouter()
+const exerciseRouter = ProtectedRouter()
 
-exerciseRouter.get('/', checkToken, getAllExercises)
-exerciseRouter.post('/', checkToken, createExercise)
-exerciseRouter.put('/:id', checkToken, updateExercise)
-exerciseRouter.delete('/:id', checkToken, deleteExercise)
+exerciseRouter.get('/', getAllExercises)
+exerciseRouter.post('/', createExercise)
+exerciseRouter.put('/:id', updateExercise)
+exerciseRouter.delete('/:id', deleteExercise)
 
 export { exerciseRouter }

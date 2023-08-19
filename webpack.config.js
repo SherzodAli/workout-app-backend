@@ -17,7 +17,7 @@ export default {
 			'@config': path.resolve(__dirname, './src/config'),
 			'@libraries': path.resolve(__dirname, './src/libraries'),
 			'@middleware': path.resolve(__dirname, './src/middleware'),
-			'@apps': path.resolve(__dirname, './src/modules')
+			'@apps': path.resolve(__dirname, './src/apps')
 		}
 	},
 	module: {

@@ -50,9 +50,7 @@ async function registerUser(req: Request, res: Response) {
 		name: getFakeFullName()
 	})
 
-	const token = generateToken(newUser.id)
-
-	res.json({ newUser, token })
+	res.json({ user: newUser, token: generateToken(newUser.id) })
 }
 
 export { authUser, registerUser }

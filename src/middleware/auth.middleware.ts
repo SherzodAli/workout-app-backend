@@ -5,7 +5,7 @@ import { Request } from '@libraries/router'
 import { getPayloadOrNull } from '@apps/auth/domain/token'
 import { getUserById } from '@apps/user/data-access/user.db'
 
-async function checkToken(req: Request, res: Response, next: NextFunction) {
+async function protectRoute(req: Request, res: Response, next: NextFunction) {
 	const token = getTokenOrNull(req)
 
 	if (!token) {
@@ -37,4 +37,4 @@ function getTokenOrNull(req: Request): string | null {
 	return token ? token : null
 }
 
-export { checkToken }
+export { protectRoute }

@@ -1,13 +1,11 @@
-import { SafeRouter } from '@libraries/router'
-
-import { checkToken } from '@middleware'
+import { ProtectedRouter } from '@libraries/router'
 
 import { deleteUsers, getAllUsers, getUserProfile } from './user.controller'
 
-const userRouter = SafeRouter()
+const userRouter = ProtectedRouter()
 
 userRouter.get('/', getAllUsers)
 userRouter.delete('/', deleteUsers)
-userRouter.get('/profile', checkToken, getUserProfile)
+userRouter.get('/profile', getUserProfile)
 
 export { userRouter }
