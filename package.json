@@ -42,5 +42,8 @@
 		"webpack-dev-server": "^4.15.1",
 		"webpack-hot-middleware": "^2.25.4",
 		"webpack-node-externals": "^3.0.0"
+	},
+	"prisma": {
+		"schema": "./src/libraries/prisma/schema.prisma"
 	}
 }

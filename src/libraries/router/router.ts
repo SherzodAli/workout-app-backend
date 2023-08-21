@@ -7,7 +7,7 @@ import {
 
 import { protectRoute } from '@middleware'
 
-const httpMethods = [
+const HTTPMethods = [
 	'all',
 	'get',
 	'post',
@@ -18,7 +18,7 @@ const httpMethods = [
 	'head'
 ]
 
-type HTTPMethod =
+type HTTPMethodType =
 	| 'all'
 	| 'get'
 	| 'post'
@@ -34,17 +34,17 @@ function tryCatchWrapper(router: ExpressRouter) {
 	}
 }
 
-function wrapHttpMethods({
-	httpMethod,
+function wrapExpressController({
 	router,
+	HTTPMethod,
 	isProtected
 }: {
-	httpMethod: HTTPMethod
 	router: ExpressRouter
+	HTTPMethod: HTTPMethodType
 	isProtected: boolean
 }) {
-	const originalMethod = router[httpMethod]
-	router[httpMethod] = (path, ...controllers) =>
+	const originalMethod = router[HTTPMethod]
+	router[HTTPMethod] = (path, ...controllers) =>
 		originalMethod.call(
 			router,
 			path,
@@ -61,16 +61,16 @@ function getExtraCallbacks({ isProtected }) {
 
 function Router(): ExpressRouter {
 	const router = ExpressRouter()
-	httpMethods.forEach((httpMethod: HTTPMethod) =>
-		wrapHttpMethods({ httpMethod, router, isProtected: false })
+	HTTPMethods.forEach((HTTPMethod: HTTPMethodType) =>
+		wrapExpressController({ router, HTTPMethod, isProtected: false })
 	)
 	return router
 }
 
 function ProtectedRouter(): ExpressRouter {
 	const router = ExpressRouter()
-	httpMethods.forEach((httpMethod: HTTPMethod) =>
-		wrapHttpMethods({ httpMethod, router, isProtected: true })
+	HTTPMethods.forEach((HTTPMethod: HTTPMethodType) =>
+		wrapExpressController({ router, HTTPMethod, isProtected: true })
 	)
 	return router
 }

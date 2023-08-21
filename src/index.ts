@@ -10,6 +10,7 @@ import { prisma } from '@libraries/prisma'
 import { errorHandler, notFound } from '@middleware'
 
 import { authRouter } from '@apps/auth/api'
+import { exerciseLogRouter } from '@apps/exercise-log/api'
 import { exerciseRouter } from '@apps/exercise/api'
 import { userRouter } from '@apps/user/api'
 import { workoutRouter } from '@apps/workout/api'
@@ -26,6 +27,7 @@ async function main() {
 	app.use('/api/auth', authRouter)
 	app.use('/api/users', userRouter)
 	app.use('/api/exercises', exerciseRouter)
+	app.use('/api/exercises/logs', exerciseLogRouter)
 	app.use('/api/workouts', workoutRouter)
 
 	app.use(notFound)

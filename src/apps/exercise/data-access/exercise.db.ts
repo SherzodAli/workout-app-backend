@@ -10,6 +10,10 @@ async function getExerciseList(): Promise<IExercise[]> {
 	return await prisma.exercise.findMany({ orderBy: { id: 'desc' } })
 }
 
+async function getExerciseById(id: number): Promise<IExercise> {
+	return await prisma.exercise.findUnique({ where: { id } })
+}
+
 async function createAndGetExercise({
 	name,
 	sets,
@@ -36,6 +40,7 @@ async function deleteAndGetExercise(id: number): Promise<IExercise> {
 
 export {
 	getExerciseList,
+	getExerciseById,
 	createAndGetExercise,
 	updateAndGetExercise,
 	deleteAndGetExercise
