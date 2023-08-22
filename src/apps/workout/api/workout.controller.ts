@@ -12,20 +12,12 @@ import {
 import { getWorkoutTimeLength } from '@apps/workout/data-access/workout.mock'
 import { ICreateWorkoutParams } from '@apps/workout/domain/workout.types'
 
-/**
- * @description Get all workouts
- * @route GET /api/workouts
- * @access Private
- */
+// GET /api/workouts [Private]
 async function getAllWorkouts(req: Request, res: Response) {
 	res.json(await getWorkoutList())
 }
 
-/**
- * @description Get workout
- * @route GET /api/workouts/:id
- * @access Private
- */
+// GET /api/workouts/:id [Private]
 async function getWorkout(req: Request, res: Response) {
 	const workout = await getWorkoutById(+req.params.id)
 	const minutes = getWorkoutTimeLength(workout?.exercises?.length)
@@ -37,22 +29,14 @@ async function getWorkout(req: Request, res: Response) {
 	res.json({ ...workout, minutes })
 }
 
-/**
- * @description Create workout
- * @route POST /api/workouts
- * @access Private
- */
+// POST /api/workouts [Private]
 async function createWorkout(req: Request, res: Response) {
 	const { name, exerciseIds }: ICreateWorkoutParams = req.body
 	const workout = await createAndGetWorkout({ name, exerciseIds })
 	res.json(workout)
 }
 
-/**
- * @description Update workout
- * @route PUT /api/workouts/:id
- * @access Private
- */
+// PUT /api/workouts/:id [Private]
 async function updateWorkout(req: Request, res: Response) {
 	const { name, exerciseIds }: ICreateWorkoutParams = req.body
 
@@ -65,11 +49,7 @@ async function updateWorkout(req: Request, res: Response) {
 	res.json(workout)
 }
 
-/**
- * @description Delete workout
- * @route DELETE /api/workouts/:id
- * @access Private
- */
+// DELETE /api/workouts/:id [Private]
 async function deleteWorkout(req: Request, res: Response) {
 	const workout = await deleteAndGetWorkout(+req.params.id)
 	res.json(workout)

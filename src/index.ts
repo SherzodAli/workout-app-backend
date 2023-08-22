@@ -13,6 +13,7 @@ import { authRouter } from '@apps/auth/api'
 import { exerciseLogRouter } from '@apps/exercise-log/api'
 import { exerciseRouter } from '@apps/exercise/api'
 import { userRouter } from '@apps/user/api'
+import { workoutLogRouter } from '@apps/workout-log/api'
 import { workoutRouter } from '@apps/workout/api'
 
 const app = express()
@@ -26,8 +27,9 @@ async function main() {
 
 	app.use('/api/auth', authRouter)
 	app.use('/api/users', userRouter)
-	app.use('/api/exercises', exerciseRouter)
 	app.use('/api/exercises/logs', exerciseLogRouter)
+	app.use('/api/exercises', exerciseRouter)
+	app.use('/api/workouts/logs', workoutLogRouter)
 	app.use('/api/workouts', workoutRouter)
 
 	app.use(notFound)

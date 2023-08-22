@@ -14,11 +14,7 @@ import {
 } from '@apps/user/data-access/user.db'
 import { getFakeFullName } from '@apps/user/data-access/user.mock'
 
-/**
- * @description Auth user
- * @route POST /api/auth/login
- * @access Public
- */
+// POST /api/auth/login [Public]
 async function authUser(req: Request, res: Response) {
 	const { email, password } = req.body
 	const user = await getFullUserByEmail(email)
@@ -31,11 +27,7 @@ async function authUser(req: Request, res: Response) {
 	res.json({ user, token: generateToken(user.id) })
 }
 
-/**
- * @description Register user
- * @route POST /api/auth/register
- * @access Public
- */
+// POST /api/auth/register [Public]
 async function registerUser(req: Request, res: Response) {
 	const { email, password } = req.body
 	const user = await getUserByEmail(email)

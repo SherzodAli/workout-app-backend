@@ -3,21 +3,21 @@ import { prisma } from '@libraries/prisma'
 import {
 	ICreateWorkoutParams,
 	IUpdateWorkoutParams,
-	IWorkout,
+	IWorkoutCompact,
 	IWorkoutSimple
 } from '@apps/workout/domain/workout.types'
 
-async function getWorkoutList(): Promise<IWorkout[]> {
+async function getWorkoutList(): Promise<IWorkoutCompact[]> {
 	return await prisma.workout.findMany({
 		orderBy: { id: 'desc' },
-		include: { exercises: true }
+		include: { exercises: true, workoutLogs: true }
 	})
 }
 
-async function getWorkoutById(id: number): Promise<IWorkout> {
+async function getWorkoutById(id: number): Promise<IWorkoutCompact> {
 	return await prisma.workout.findUnique({
 		where: { id },
-		include: { exercises: true }
+		include: { exercises: true, workoutLogs: true }
 	})
 }
 

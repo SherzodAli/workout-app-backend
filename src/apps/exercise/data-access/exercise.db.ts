@@ -14,6 +14,14 @@ async function getExerciseById(id: number): Promise<IExercise> {
 	return await prisma.exercise.findUnique({ where: { id } })
 }
 
+async function getExerciseTotalWeight(userId: number): Promise<number> {
+	const response = await prisma.exerciseTime.aggregate({
+		where: { exerciseLog: { userId }, isCompleted: true },
+		_sum: { weight: true, repeat: true }
+	})
+	return response._sum.weight * response._sum.repeat ?? 0
+}
+
 async function createAndGetExercise({
 	name,
 	sets,
@@ -41,6 +49,7 @@ async function deleteAndGetExercise(id: number): Promise<IExercise> {
 export {
 	getExerciseList,
 	getExerciseById,
+	getExerciseTotalWeight,
 	createAndGetExercise,
 	updateAndGetExercise,
 	deleteAndGetExercise

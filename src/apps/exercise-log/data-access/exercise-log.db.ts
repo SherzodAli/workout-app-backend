@@ -21,6 +21,12 @@ async function getExerciseLogById(id: number): Promise<IExerciseLog> {
 	})
 }
 
+async function getExerciseLogCompletedCount(userId: number): Promise<number> {
+	return await prisma.exerciseLog.count({
+		where: { userId, isCompleted: true }
+	})
+}
+
 async function getLastCompletedExerciseLog(
 	exerciseId: number
 ): Promise<IExerciseLog> {
@@ -79,6 +85,7 @@ async function deleteExerciseLogById(id: number): Promise<IExerciseLogSimple> {
 export {
 	getExerciseLogList,
 	getExerciseLogById,
+	getExerciseLogCompletedCount,
 	getLastCompletedExerciseLog,
 	createAndGetExerciseLog,
 	updateAndGetExerciseLogTime,

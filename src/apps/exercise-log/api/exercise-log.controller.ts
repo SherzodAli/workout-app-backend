@@ -19,20 +19,12 @@ import { getExerciseById } from '@apps/exercise/data-access/exercise.db'
 
 import { IUpdateExerciseTimeRequestParams } from '../domain/exercise-log.types'
 
-/**
- * @description Get all logs of an exercise
- * @route GET /api/exercises/logs
- * @access Private
- */
+// GET /api/exercises/logs [Private]
 async function getAllExerciseLogs(req: Request, res: Response) {
 	res.json(await getExerciseLogList())
 }
 
-/**
- * @description Get a specific log of an exercise
- * @route GET /api/exercises/logs/:id
- * @access Private
- */
+// GET /api/exercises/logs/:id [Private]
 async function getExerciseLog(req: Request, res: Response) {
 	const exerciseLog = await getExerciseLogById(+req.params.id)
 
@@ -47,11 +39,7 @@ async function getExerciseLog(req: Request, res: Response) {
 	res.json({ ...exerciseLog, times })
 }
 
-/**
- * @description Create an exercise log
- * @route POST /api/exercises/logs
- * @access Private
- */
+// POST /api/exercises/logs [Private]
 async function createExerciseLog(req: Request, res: Response) {
 	const { exerciseId }: { exerciseId: number } = req.body
 
@@ -74,11 +62,7 @@ async function createExerciseLog(req: Request, res: Response) {
 	res.json(exerciseLog)
 }
 
-/**
- * @description Update an exercise time
- * @route PUT /api/exercises/logs/time/:id
- * @access Private
- */
+// GET /api/exercises/logs/time/:id [Private]
 async function updateExerciseTime(req: Request, res: Response) {
 	const { weight, repeat, isCompleted }: IUpdateExerciseTimeRequestParams =
 		req.body
@@ -93,11 +77,7 @@ async function updateExerciseTime(req: Request, res: Response) {
 	res.json(exerciseLogTime)
 }
 
-/**
- * @description Update an exercise time status
- * @route PATCH /api/exercises/logs/:id/status
- * @access Private
- */
+// PATCH /api/exercises/logs/:id/status [Private]
 async function updateExerciseLogStatus(req: Request, res: Response) {
 	const { isCompleted }: { isCompleted: boolean } = req.body
 	const exerciseLog = await getExerciseLogById(+req.params.id)
@@ -113,11 +93,7 @@ async function updateExerciseLogStatus(req: Request, res: Response) {
 	res.json(exerciseLogTime)
 }
 
-/**
- * @description Delete an exercise log
- * @route DELETE /api/exercises/logs/:id
- * @access Private
- */
+// DELETE /api/exercises/logs/:id [Private]
 async function deleteExerciseLog(req: Request, res: Response) {
 	const exerciseLog = await deleteExerciseLogById(+req.params.id)
 	res.json(exerciseLog)

@@ -5,7 +5,7 @@ const RANDOM_COEFFICIENT = 3.7 // Can be any number
  	workout time length in minutes
  */
 function getWorkoutTimeLength(numberOfExercises: number): number {
-	return Math.ceil(numberOfExercises * RANDOM_COEFFICIENT)
+	return Math.ceil(numberOfExercises * RANDOM_COEFFICIENT) ?? 0
 }
 
 export { getWorkoutTimeLength }
